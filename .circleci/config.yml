@@ -1,0 +1,56 @@
+version: 2
+jobs:
+    # The build job
+    build:
+        working_directory: ~/project
+
+        docker:
+            - image: circleci/node:10-browsers
+        steps:
+            # Install Chromedriver latest version
+            - run: #STABLE
+                name: Install Chromedriver latest version
+                command: |
+                  sudo apt-get update
+                  sudo apt-get install lsb-release libappindicator3-1
+                  curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                  sudo dpkg -i google-chrome.deb
+                  sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+                  rm google-chrome.deb
+            # Checkout the code from the branch into the working_directory
+            - checkout
+            # Log the current branch
+            - run:
+                name: Show current branch
+                command: echo ${CIRCLE_BRANCH}
+            # Restore local dependencies from cache
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
+            # Install project dependencies
+            - run:
+                name: Install local dependencies
+                command: npm install
+            # Rebuild node-sass
+            - run:
+                name: Rebuild node-sass
+                command: npm rebuild node-sass
+            # Cache local dependencies if they don't exist
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            # Test the source code
+            - run:
+                name: Testing
+                command: npm run test
+            # Build project
+            - run:
+                name: Building
+                command: npm run build
+            # Cache the dist folder for the deploy job
+            - save_cache:
+                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+                paths:
+                    - build
