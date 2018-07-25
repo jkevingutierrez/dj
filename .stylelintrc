@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-infield",
+  "rules": {
+    "unit-whitelist": ["px", "em", "rem", "%", "s", "vw", "vh", "vmin", "deg"],
+    "color-hex-length": "short"
+  }
+}
