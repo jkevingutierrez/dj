@@ -1,4 +1,5 @@
 .App {
+  color: $black;
   text-align: center;
 }
 
@@ -8,8 +9,8 @@
 }
 
 .App-header {
-  background-color: #222;
-  color: #fff;
+  background-color: $gray;
+  color: $white;
   height: 150px;
   padding: 20px;
 }
