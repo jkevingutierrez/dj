@@ -131,7 +131,6 @@ class RequestPickupForm extends Component {
     const { classes } = this.props;
     return (
       <Grid container spacing={24} justify="center">
-        >
         <Grid item xs={10}>
           <Paper>
             <form autoComplete="off" className={classes.form} onSubmit={this.handleSubmit}>

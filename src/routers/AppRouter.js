@@ -5,6 +5,8 @@ import HomePage from '../pages/HomePage';
 import RequestPickup from '../pages/RequestPickup';
 import MapComponent from '../components/Map';
 import NotFoundPage from '../pages/NotFoundPage';
+import Register from '../components/Form/Register';
+import Login from '../components/Form/Login';
 
 import { pink } from '@material-ui/core/colors';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -12,11 +14,11 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#00897b',
+      main: '#00897b'
     },
-    secondary: pink,
-  },
-})
+    secondary: pink
+  }
+});
 
 const AppRouter = () => (
   <Router>
@@ -24,6 +26,8 @@ const AppRouter = () => (
       <MuiThemeProvider theme={theme}>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/registro" component={Register} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/pickup/register" component={RequestPickup} />
           <Route exact path="/map" component={MapComponent} />
           <Route component={NotFoundPage} />
