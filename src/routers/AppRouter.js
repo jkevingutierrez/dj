@@ -4,6 +4,7 @@ import App from '../containers/App';
 import HomePage from '../pages/HomePage';
 import RequestPickup from '../pages/RequestPickup';
 import MapComponent from '../components/Map';
+import Requests from '../components/Requests';
 import NotFoundPage from '../pages/NotFoundPage';
 
 import { pink } from '@material-ui/core/colors';
@@ -25,6 +26,7 @@ const AppRouter = () => (
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/pickup/register" component={RequestPickup} />
+          <Route exact path="/requests" component={Requests} />
           <Route exact path="/map" component={MapComponent} />
           <Route component={NotFoundPage} />
         </Switch>
