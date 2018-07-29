@@ -19,8 +19,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import locationsData from '../assets/data/locations.json'
-import wasteTypesData from '../assets/data/waste-types.json'
+import locationsData from '../assets/data/localidadesList.json'
+import wasteTypesData from '../assets/data/wasteTypes.json'
 
 import Loader from './Loader';
 
@@ -35,8 +35,8 @@ const styles = theme => ({
   },
   formControl: {
     marginTop: 20
-  },
-})
+  }
+});
 
 class RequestPickupForm extends Component {
   state = {
@@ -53,8 +53,8 @@ class RequestPickupForm extends Component {
     //   }));
 
     this.setState({
-      wasteTypes: wasteTypesData.types,
-      locations: locationsData.locations,
+      wasteTypes: wasteTypesData,
+      locations: locationsData,
       error: {}
     });
   }
@@ -144,12 +144,12 @@ class RequestPickupForm extends Component {
                   }}
                 >
                   {
-                    this.state.wasteTypes.map((wasteType) =>
-                      <MenuItem key={wasteType.replace(/[^a-z0-9áéíóúñü_-\s,]/gim, '')} value={wasteType}>{wasteType}</MenuItem>
+                    this.state.wasteTypes.map(wasteType =>
+                      <MenuItem key={wasteType.code} value={wasteType.code}>{wasteType.name.charAt(0).toUpperCase() + wasteType.name.slice(1).toLowerCase()}</MenuItem>
                     )
                   }
                 </Select>
-                <FormHelperText>Obligatorio</FormHelperText>
+                { this.state.error.selectedWasteType ? <FormHelperText>Obligatorio</FormHelperText> : ''}
               </FormControl>
               <FormControl error={this.state.error.selectedLocation} required className={classes.formControl} fullWidth={true}>
                 <InputLabel htmlFor="location">Localidad</InputLabel>
@@ -162,12 +162,12 @@ class RequestPickupForm extends Component {
                   }}
                 >
                   {
-                    this.state.locations.map((location, index) =>
-                      <MenuItem key={location.replace(/[^a-z0-9áéíóúñü_-\s,]/gim, '')} value={index}>{location}</MenuItem>
+                    this.state.locations.map(location =>
+                      <MenuItem key={location.code} value={location.code}>{location.name.charAt(0).toUpperCase() + location.name.slice(1).toLowerCase()}</MenuItem>
                     )
                   }
                 </Select>
-                <FormHelperText>Obligatorio</FormHelperText>
+                { this.state.error.selectedLocation ? <FormHelperText>Obligatorio</FormHelperText> : ''}
               </FormControl>
               <FormControl error={this.state.error.selectedDate} className={classes.formControl} required fullWidth={true}>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -179,7 +179,7 @@ class RequestPickupForm extends Component {
                     disablePast={true}
                   />
                 </MuiPickersUtilsProvider>
-                <FormHelperText>Obligatorio</FormHelperText>
+                { this.state.error.selectedDate ? <FormHelperText>Obligatorio</FormHelperText> : ''}
               </FormControl>
               <FormControl className={classes.formControl} fullWidth={false}>
                 <Button variant="contained" color="primary" className={classes.button} type="submit">
