@@ -14,6 +14,8 @@ import DatePicker from 'material-ui-pickers/DatePicker';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
+import locationsData from '../assets/data/locations.json'
+import wasteTypesData from '../assets/data/waste-types.json'
 
 const styles = theme => ({
   form: {
@@ -30,10 +32,25 @@ const styles = theme => ({
 
 class RequestPickupForm extends Component {
   state = {
-    wasteType: '',
-    location: '',
-    selectedDate: null
+    selectedWasteType: '',
+    selectedLocation: '',
+    selectedDate: null,
+    locations: [],
+    wasteTypes: []
   };
+
+  componentDidMount() {
+    // fetch('https://api.mydomain.com')
+    //   .then(response => response.json())
+    //   .then(data => this.setState({
+    //     data
+    //   }));
+
+    this.setState({
+      wasteTypes: wasteTypesData.types,
+      locations: locationsData.locations
+    });
+  }
 
   handleChange = event => {
     this.setState({
@@ -65,38 +82,42 @@ class RequestPickupForm extends Component {
               <FormControl required className={classes.formControl} fullWidth={true}>
                 <InputLabel htmlFor="waste-type">Tipo de residuo</InputLabel>
                 <Select
-                  value={this.state.wasteType}
+                  value={this.state.selectedWasteType}
                   onChange={this.handleChange}
                   inputProps={{
-                    name: 'wasteType',
+                    name: 'selectedWasteType',
                     id: 'waste-type'
                   }}
                 >
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {
+                    this.state.wasteTypes.map((wasteType) =>
+                      <MenuItem key={wasteType.replace(/[^a-z0-9áéíóúñü_-\s\.,]/gim, '')} value={wasteType}>{wasteType}</MenuItem>
+                    )
+                  }
                 </Select>
                 <FormHelperText>Obligatorio</FormHelperText>
               </FormControl>
               <FormControl required className={classes.formControl} fullWidth={true}>
                 <InputLabel htmlFor="location">Localidad</InputLabel>
                 <Select
-                  value={this.state.location}
+                  value={this.state.selectedLocation}
                   onChange={this.handleChange}
                   inputProps={{
-                    name: 'location',
+                    name: 'selectedLocation',
                     id: 'location'
                   }}
                 >
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {
+                    this.state.locations.map((location, index) =>
+                      <MenuItem key={location.replace(/[^a-z0-9áéíóúñü_-\s\.,]/gim, '')} value={index}>{location}</MenuItem>
+                    )
+                  }
                 </Select>
                 <FormHelperText>Obligatorio</FormHelperText>
               </FormControl>
