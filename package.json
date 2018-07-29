@@ -77,7 +77,9 @@
     "serve": "serve -s build",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "firebase-tools": "^4.0.0"
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"

@@ -3,13 +3,18 @@ import thunk from 'redux-thunk';
 import map from '../reducers/map';
 
 export default () => {
+  const composeEnhancers =
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      : compose;
+
   const store = createStore(
     combineReducers({
       map
     }),
-    compose(
-      applyMiddleware(thunk),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(
+      applyMiddleware(thunk)
     )
   );
 
