@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
+import { withRouter } from 'react-router-dom';
+
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   } else {
@@ -99,10 +102,13 @@ class Login extends Component {
           .ref('USUARIOS/' + datosUsuario.user.uid)
           .once('value')
           .then(function(snap) {
+            //datos del usuario
             console.log(snap.val());
+
             const rel = snap.val().REFERENCES;
             const tipo = snap.val().TYPE;
 
+            //datos institucion
             switch (tipo) {
               case 'IE':
                 firebase
@@ -116,7 +122,7 @@ class Login extends Component {
               case 'AR':
                 firebase
                   .database()
-                  .ref('ORS/' + rel)
+                  .ref('ORG/' + rel)
                   .once('value')
                   .then(function(snap) {
                     console.log(snap.val());
@@ -139,6 +145,9 @@ class Login extends Component {
       .catch((err) => {
         alert(err);
       });
+
+    this.props.history.push('/pickup/register')
+
   };
 
   handleSubmit = (e) => {
@@ -242,4 +251,4 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Login);
+export default withRouter(withStyles(styles)(Login));
