@@ -1,0 +1,122 @@
+[
+  {
+    "localidad": "",
+    "numberAR": 25,
+    "numberECAS": "",
+    "numberIEDTH": ""
+  },
+  {
+    "localidad": "ANTONIO NARIÑO",
+    "numberAR": 2,
+    "numberECAS": "",
+    "numberIEDTH": 6
+  },
+  {
+    "localidad": "BARRIOS UNIDOS",
+    "numberAR": 3,
+    "numberECAS": "",
+    "numberIEDTH": 7
+  },
+  {
+    "localidad": "BOSA",
+    "numberAR": 9,
+    "numberECAS": "",
+    "numberIEDTH": 2
+  },
+  {
+    "localidad": "CANDELARIA",
+    "numberAR": 3,
+    "numberECAS": "",
+    "numberIEDTH": 1
+  },
+  {
+    "localidad": "CHAPINERO",
+    "numberAR": 6,
+    "numberECAS": "",
+    "numberIEDTH": 12
+  },
+  {
+    "localidad": "CIUDAD BOLIVAR",
+    "numberAR": 3,
+    "numberECAS": "",
+    "numberIEDTH": 1
+  },
+  {
+    "localidad": "ENGATIVA",
+    "numberAR": 7,
+    "numberECAS": 2,
+    "numberIEDTH": 2
+  },
+  {
+    "localidad": "FONTIBON",
+    "numberAR": 6,
+    "numberECAS": 1,
+    "numberIEDTH": 7
+  },
+  {
+    "localidad": "KENNEDY",
+    "numberAR": 18,
+    "numberECAS": 5,
+    "numberIEDTH": 2
+  },
+  {
+    "localidad": "MARTIRES",
+    "numberAR": 5,
+    "numberECAS": 1,
+    "numberIEDTH": ""
+  },
+  {
+    "localidad": "PUENTE ARANDA",
+    "numberAR": 10,
+    "numberECAS": 2,
+    "numberIEDTH": ""
+  },
+  {
+    "localidad": "RAFAEL URIBE URIBE",
+    "numberAR": 8,
+    "numberECAS": "",
+    "numberIEDTH": 2
+  },
+  {
+    "localidad": "SAN CRISTOBAL",
+    "numberAR": 2,
+    "numberECAS": "",
+    "numberIEDTH": 2
+  },
+  {
+    "localidad": "SANTA FE",
+    "numberAR": 2,
+    "numberECAS": "",
+    "numberIEDTH": 8
+  },
+  {
+    "localidad": "SUBA",
+    "numberAR": 14,
+    "numberECAS": "",
+    "numberIEDTH": 6
+  },
+  {
+    "localidad": "TEUSAQUILLO",
+    "numberAR": 2,
+    "numberECAS": "",
+    "numberIEDTH": 11
+  },
+  {
+    "localidad": "TUNJUELITO",
+    "numberAR": 5,
+    "numberECAS": "",
+    "numberIEDTH": 4
+  },
+  {
+    "localidad": "USAQUEN",
+    "numberAR": 4,
+    "numberECAS": 2,
+    "numberIEDTH": 3
+  },
+  {
+    "localidad": "USME",
+    "numberAR": 4,
+    "numberECAS": 1,
+    "numberIEDTH": 1
+  }
+]

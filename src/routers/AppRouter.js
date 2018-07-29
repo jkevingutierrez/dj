@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import App from '../containers/App';
 import HomePage from '../pages/HomePage';
 import RequestPickup from '../pages/RequestPickup';
-import MapContainer from '../components/MapContainer';
+import MapComponent from '../components/Map';
 import NotFoundPage from '../pages/NotFoundPage';
 
 import { pink } from '@material-ui/core/colors';
@@ -25,10 +25,10 @@ const AppRouter = () => (
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/pickup/register" component={RequestPickup} />
-          <Route exact path="/map" component={MapContainer} />
+          <Route exact path="/map" component={MapComponent} />
           <Route component={NotFoundPage} />
         </Switch>
-      </MuiThemeProvider>,
+      </MuiThemeProvider>
     </App>
   </Router>
 );
