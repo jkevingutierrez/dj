@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
-// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import RaisedButton from './Button/RaisedButton';
 import { success as mapSuccess } from '../actions/map';
 import localitiesGeoJSON from '../assets/data/localidades.geojson';
 import gmapsStyles from '../assets/data/gmaps-styles.json';
+import directorioECAS from '../assets/data/directorio-ECAS.json';
 
 const style = {
   width: '100%',
@@ -20,8 +20,23 @@ export class MapComponent extends Component {
     showingInfoWindow: false,
     positionInfoWindow: null,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    directorioECAS,
+    currentLocation: {
+      coords: {
+        latitude: 4.638179399999999,
+        longitude: -74.0919361
+      }
+    }
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        currentLocation: position
+      });
+    });
+  }
 
   // onMarkerClick = (props, marker, e) => {
   //   this.setState({
@@ -69,8 +84,38 @@ export class MapComponent extends Component {
   };
 
   onReady = (mapProps, map) => {
-    // const { google } = mapProps;
-    // const service = new google.maps.places.PlacesService(map);
+    const { google } = mapProps;
+    const distanceMatrixService = new google.maps.DistanceMatrixService();
+
+    const coords = this.state.currentLocation.coords;
+    const currentPosition = new google.maps.LatLng(coords.latitude, coords.longitude);
+    const positions = this.state.directorioECAS.map(ECA => new google.maps.LatLng(ECA.Latitud, ECA.Longitud));
+
+    distanceMatrixService.getDistanceMatrix({
+      origins: [currentPosition],
+      destinations: [...positions],
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      let nearestIndex = 0;
+      let minValue = response.rows[0].elements[0].distance.value;
+
+      response.rows[0].elements.forEach((element, index) => {
+        if (element.distance.value < minValue) {
+          minValue = element.distance.value;
+          nearestIndex = index;
+        }
+      });
+
+      directorioECAS[nearestIndex].isNearest = true;
+
+      this.setState((prevState) => {
+        prevState.directorioECAS[nearestIndex].isNearest = true;
+        return { directorioECAS: prevState.directorioECAS };
+      })
+
+    });
+
+
     this.props.dispatch(mapSuccess({ mapProps, map }));
     map.data.loadGeoJson(localitiesGeoJSON);
     map.data.setStyle((feature) => {
@@ -124,9 +169,11 @@ export class MapComponent extends Component {
   };
 
   render() {
+    const { currentLocation } = this.state;
+    const { google } = this.props;
     return (
       <Map
-        google={this.props.google}
+        google={google}
         style={style}
         styles={gmapsStyles}
         initialCenter={{
@@ -138,7 +185,33 @@ export class MapComponent extends Component {
         onDragend={this.onMapDragend}
         onReady={this.onReady}
       >
-        {/* <Marker onClick={this.onMarkerClick} name={'Current location'} /> */}
+        <Marker
+          title={'Localización actual'}
+          name={'Industria X'}
+          position={{lat: currentLocation.coords.latitude, lng: currentLocation.coords.longitude }}
+          />
+
+        { this.state.directorioECAS.map((ECA, index) => (
+            <Marker
+              key={index}
+              title={'ECA'}
+              name={'ECA'}
+              position = {
+                {
+                  lat: ECA.Latitud,
+                  lng: ECA.Longitud
+                }
+              }
+              icon = {
+                {
+                  url: !ECA.isNearest ? 'https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/recycling-512.png' : 'http://www.myiconfinder.com/uploads/iconsets/256-256-82a679a558f2fe4c3964c4123343f844.png',
+                  anchor: new google.maps.Point(36, 36),
+                  scaledSize: new google.maps.Size(36, 36)
+                }
+              }
+              />
+          ))
+        }
         <InfoWindow
           // marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
