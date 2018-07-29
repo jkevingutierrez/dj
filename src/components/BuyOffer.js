@@ -13,12 +13,13 @@ const styles = (theme) => ({
 
 class Request extends Component {
   render() {
-    const { classes, date, location, type, handleAccept, handleReject } = this.props;
+    const { classes, date, location, type, weight, handleAccept, handleReject } = this.props;
     return (
       <ListItem>
         <ListItemText
-          primary={`Solicitud de RECOLECCIÓN de ${type} en ${location.charAt(0).toUpperCase() +
-            location.slice(1).toLowerCase()} para ${date}`}
+          primary={`Solicitud de COMPRA de ${weight} de ${type} en ${location
+            .charAt(0)
+            .toUpperCase() + location.slice(1).toLowerCase()} para ${date}`}
         />
         <ListItemSecondaryAction>
           <Button
