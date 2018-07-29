@@ -19,12 +19,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import locationsData from '../assets/data/localidadesList.json'
-import wasteTypesData from '../assets/data/wasteTypes.json'
+import locationsData from '../assets/data/localidadesList.json';
+import wasteTypesData from '../assets/data/wasteTypes.json';
 
 import Loader from './Loader';
 
-const styles = theme => ({
+const styles = (theme) => ({
   form: {
     margin: 20,
     padding: 20,
@@ -46,7 +46,7 @@ class RequestPickupForm extends Component {
   };
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         selectedLocation: this.calculateNearestLocation(position)
       });
@@ -55,7 +55,7 @@ class RequestPickupForm extends Component {
     this.setState({
       wasteTypes: wasteTypesData,
       locations: locationsData,
-      error: {},
+      error: {}
     });
   }
 
@@ -67,21 +67,21 @@ class RequestPickupForm extends Component {
       isLoading: false,
       error: {},
       open: false
-    }
+    };
   }
 
-  calculateNearestLocation = position => {
-    const nearestLocation = locationsData.find(location => location.code === '13');
+  calculateNearestLocation = (position) => {
+    const nearestLocation = locationsData.find((location) => location.code === '13');
     return nearestLocation.code;
-  }
+  };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
-  handleDateChange = date => {
+  handleDateChange = (date) => {
     this.setState({
       selectedDate: date
     });
@@ -91,7 +91,7 @@ class RequestPickupForm extends Component {
     this.setState({ open: false });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const error = {};
@@ -120,10 +120,9 @@ class RequestPickupForm extends Component {
     if (!hasErrors) {
       setTimeout(() => {
         this.setState({
-            ...this.initialState(),
-            open: true
-          }
-        );
+          ...this.initialState(),
+          open: true
+        });
       }, 1000);
     }
   };
@@ -131,14 +130,20 @@ class RequestPickupForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container spacing={24} justify="center">>
-       <Grid item xs={10}>
+      <Grid container spacing={24} justify="center">
+        >
+        <Grid item xs={10}>
           <Paper>
-            <form autoComplete="off" className={classes.form} onSubmit={this.handleSubmit} >
+            <form autoComplete="off" className={classes.form} onSubmit={this.handleSubmit}>
               <Typography variant="title" className={classes.typography} gutterBottom>
                 Solicitud para recolección de residuos
               </Typography>
-              <FormControl error={this.state.error.selectedWasteType} required className={classes.formControl} fullWidth={true}>
+              <FormControl
+                error={this.state.error.selectedWasteType}
+                required
+                className={classes.formControl}
+                fullWidth={true}
+              >
                 <InputLabel htmlFor="waste-type">Tipo de residuo</InputLabel>
                 <Select
                   value={this.state.selectedWasteType}
@@ -148,15 +153,25 @@ class RequestPickupForm extends Component {
                     id: 'waste-type'
                   }}
                 >
-                  {
-                    this.state.wasteTypes.map(wasteType =>
-                      <MenuItem key={wasteType.code} value={wasteType.code}>{wasteType.name.charAt(0).toUpperCase() + wasteType.name.slice(1).toLowerCase()}</MenuItem>
-                    )
-                  }
+                  {this.state.wasteTypes.map((wasteType) => (
+                    <MenuItem key={wasteType.code} value={wasteType.code}>
+                      {wasteType.name.charAt(0).toUpperCase() +
+                        wasteType.name.slice(1).toLowerCase()}
+                    </MenuItem>
+                  ))}
                 </Select>
-                { this.state.error.selectedWasteType ? <FormHelperText>Obligatorio</FormHelperText> : ''}
+                {this.state.error.selectedWasteType ? (
+                  <FormHelperText>Obligatorio</FormHelperText>
+                ) : (
+                  ''
+                )}
               </FormControl>
-              <FormControl error={this.state.error.selectedLocation} required className={classes.formControl} fullWidth={true}>
+              <FormControl
+                error={this.state.error.selectedLocation}
+                required
+                className={classes.formControl}
+                fullWidth={true}
+              >
                 <InputLabel htmlFor="location">Localidad</InputLabel>
                 <Select
                   value={this.state.selectedLocation}
@@ -166,15 +181,24 @@ class RequestPickupForm extends Component {
                     id: 'location'
                   }}
                 >
-                  {
-                    this.state.locations.map(location =>
-                      <MenuItem key={location.code} value={location.code}>{location.name.charAt(0).toUpperCase() + location.name.slice(1).toLowerCase()}</MenuItem>
-                    )
-                  }
+                  {this.state.locations.map((location) => (
+                    <MenuItem key={location.code} value={location.code}>
+                      {location.name.charAt(0).toUpperCase() + location.name.slice(1).toLowerCase()}
+                    </MenuItem>
+                  ))}
                 </Select>
-                { this.state.error.selectedLocation ? <FormHelperText>Obligatorio</FormHelperText> : ''}
+                {this.state.error.selectedLocation ? (
+                  <FormHelperText>Obligatorio</FormHelperText>
+                ) : (
+                  ''
+                )}
               </FormControl>
-              <FormControl error={this.state.error.selectedDate} className={classes.formControl} required fullWidth={true}>
+              <FormControl
+                error={this.state.error.selectedDate}
+                className={classes.formControl}
+                required
+                fullWidth={true}
+              >
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                   <DatePicker
                     autoOk
@@ -184,10 +208,15 @@ class RequestPickupForm extends Component {
                     disablePast={true}
                   />
                 </MuiPickersUtilsProvider>
-                { this.state.error.selectedDate ? <FormHelperText>Obligatorio</FormHelperText> : ''}
+                {this.state.error.selectedDate ? <FormHelperText>Obligatorio</FormHelperText> : ''}
               </FormControl>
               <FormControl className={classes.formControl} fullWidth={false}>
-                <Button variant="contained" color="primary" className={classes.button} type="submit">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  type="submit"
+                >
                   Solicitar recolección
                 </Button>
               </FormControl>
@@ -200,11 +229,11 @@ class RequestPickupForm extends Component {
           onClose={this.handleClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title">{"Se ha enviado la solicitud correctamente"}</DialogTitle>
+          <DialogTitle id="responsive-dialog-title">
+            {'Se ha enviado la solicitud correctamente'}
+          </DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Se ha registrado la solicitud
-            </DialogContentText>
+            <DialogContentText>Se ha registrado la solicitud</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
@@ -212,16 +241,14 @@ class RequestPickupForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        {
-          this.state.isLoading ? < Loader / > : ''
-        }
+        {this.state.isLoading ? <Loader /> : ''}
       </Grid>
     );
   }
 }
 
 RequestPickupForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(RequestPickupForm);

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import RaisedButton from './Button/RaisedButton';
 import { success as mapSuccess } from '../actions/map';
 import localitiesGeoJSON from '../assets/data/localidades.geojson';
 import gmapsStyles from '../assets/data/gmaps-styles.json';
@@ -56,7 +57,8 @@ export class MapComponent extends Component {
   renderInfoWindowContent = () => {
     ReactDOM.render(
       <div>
-        <button onClick={this.onInfoWindowButtonClick}>Seleccionar</button>
+        <RaisedButton onClick={this.onInfoWindowButtonClick}>Seleccionar</RaisedButton>
+        {/* <button onClick={this.onInfoWindowButtonClick}>Seleccionar</button> */}
       </div>,
       document.getElementById('iw-content')
     );
