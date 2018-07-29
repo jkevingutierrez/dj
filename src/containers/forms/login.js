@@ -38,7 +38,7 @@ class Login extends Component {
         		});
 
 		}).catch(function(err){
-			
+			 	
 		})
 	}
 	handlerClick(event){
