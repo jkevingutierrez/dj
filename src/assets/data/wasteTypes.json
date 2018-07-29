@@ -1,0 +1,20 @@
+[
+  {
+    "code": 1,
+    "name": "Plásticos"
+  }, {
+    "code": 2,
+    "name": "Papel y cartón"
+  }, {
+    "code": 3,
+    "name": "Metales"
+  }, {
+    "code": 4,
+    "name": "Vidrios"
+  }, {
+    "code": 5,
+    "name": "Organicos"
+  }
+]
+
+
