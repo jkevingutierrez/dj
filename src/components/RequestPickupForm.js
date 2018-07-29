@@ -46,16 +46,16 @@ class RequestPickupForm extends Component {
   };
 
   componentDidMount() {
-    // fetch('https://api.mydomain.com')
-    //   .then(response => response.json())
-    //   .then(data => this.setState({
-    //     data
-    //   }));
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        selectedLocation: this.calculateNearestLocation(position)
+      });
+    });
 
     this.setState({
       wasteTypes: wasteTypesData,
       locations: locationsData,
-      error: {}
+      error: {},
     });
   }
 
@@ -68,6 +68,11 @@ class RequestPickupForm extends Component {
       error: {},
       open: false
     }
+  }
+
+  calculateNearestLocation = position => {
+    const nearestLocation = locationsData.find(location => location.code === '13');
+    return nearestLocation.code;
   }
 
   handleChange = event => {
