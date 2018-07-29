@@ -19,6 +19,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { withRouter } from 'react-router-dom';
+
 import locationsData from '../assets/data/localidadesList.json';
 import wasteTypesData from '../assets/data/wasteTypes.json';
 
@@ -89,6 +91,7 @@ class RequestPickupForm extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.history.push('/buy/register')
   };
 
   handleSubmit = (event) => {
@@ -250,4 +253,4 @@ RequestPickupForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RequestPickupForm);
+export default withRouter(withStyles(styles)(RequestPickupForm));

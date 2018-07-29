@@ -40,12 +40,6 @@ class Register extends Component {
   };
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        selectedLocation: this.calculateNearestLocation(position)
-      });
-    });
-
     this.setState({
       accountTypes: [
         { code: 'IE', name: 'Institución educativa' },

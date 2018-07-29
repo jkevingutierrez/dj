@@ -27,7 +27,7 @@ const AppRouter = () => (
     <App>
       <MuiThemeProvider theme={theme}>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/registro" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/pickup/register" component={RequestPickup} />
