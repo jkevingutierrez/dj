@@ -37,8 +37,7 @@ class Requests extends Component {
 
   handleClose = () => {
     this.setState({
-      open: false,
-      requests: [...this.state.requests.slice(1)]
+      open: false
     });
   };
 
@@ -52,7 +51,7 @@ class Requests extends Component {
   handleAcceptBO = () => {
     this.setState({
       open: true,
-      requests: [...this.state.buyOffers.slice(1)]
+      buyOffers: [...this.state.buyOffers.slice(1)]
     });
   };
 
