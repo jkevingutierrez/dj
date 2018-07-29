@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { success as mapSuccess } from '../actions/map';
 import localitiesGeoJSON from '../assets/data/localidades.geojson';
 import gmapsStyles from '../assets/data/gmaps-styles.json';
