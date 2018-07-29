@@ -99,10 +99,13 @@ class Login extends Component {
           .ref('USUARIOS/' + datosUsuario.user.uid)
           .once('value')
           .then(function(snap) {
+            //datos del usuario
             console.log(snap.val());
+
             const rel = snap.val().REFERENCES;
             const tipo = snap.val().TYPE;
 
+              //datos institucion
             switch (tipo) {
               case 'IE':
                 firebase
@@ -114,7 +117,7 @@ class Login extends Component {
                   });
                 break;
               case 'AR':
-                firebase
+                  firebase.database().ref('ORG/'+rel).once('value').then(
                   .database()
                   .ref('ORS/' + rel)
                   .once('value')
