@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { success as mapSuccess } from '../actions/map';
 import localitiesGeoJSON from '../assets/data/localidades.geojson';
+import gmapsStyles from '../assets/data/gmaps-styles.json';
 
 const style = {
   width: '100%',
@@ -43,6 +44,31 @@ export class MapComponent extends Component {
     // const service = new google.maps.places.PlacesService(map);
     this.props.dispatch(mapSuccess({ mapProps, map }));
     map.data.loadGeoJson(localitiesGeoJSON);
+    map.data.setStyle((feature) => {
+      let fillColor = '#00bcd4';
+      let strokeColor = '#0097a7';
+      let strokeWeight = 1;
+      let fillOpacity;
+      let zIndex;
+      if (feature.getProperty('isOver')) {
+        fillOpacity = 0.7;
+        strokeWeight = 4;
+        zIndex = 999;
+      }
+      return {
+        fillColor,
+        fillOpacity,
+        strokeColor,
+        strokeWeight,
+        zIndex
+      };
+    });
+    map.data.addListener('mouseover', (event) => {
+      event.feature.setProperty('isOver', true);
+    });
+    map.data.addListener('mouseout', (event) => {
+      event.feature.setProperty('isOver', false);
+    });
   };
 
   render() {
@@ -50,16 +76,17 @@ export class MapComponent extends Component {
       <Map
         google={this.props.google}
         style={style}
+        styles={gmapsStyles}
         initialCenter={{
-          lat: 40.854885,
-          lng: -88.081807
+          lat: 4.60971,
+          lng: -74.08175
         }}
-        zoom={15}
+        zoom={10}
         onClick={this.onMapClicked}
         onDragend={this.onMapDragend}
         onReady={this.onReady}
       >
-        <Marker onClick={this.onMarkerClick} name={'Current location'} />
+        {/* <Marker onClick={this.onMarkerClick} name={'Current location'} /> */}
         <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
           <div>
             <h1>{this.state.selectedPlace.name}</h1>
