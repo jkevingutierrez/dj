@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Welcome from '../components/Welcome';
+import Welcome from '../containers/forms/login';
 
 export default class componentName extends Component {
   render() {
