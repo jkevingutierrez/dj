@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "date": "30-07-2018",
+    "location": "CHAPINERO",
+    "entity": "AR",
+    "type": "Papel"
+  },
+  {
+    "id": 2,
+    "date": "30-07-2019",
+    "location": "CHAPINERO",
+    "entity": "AR",
+    "type": "Carton"
+  }
+]
