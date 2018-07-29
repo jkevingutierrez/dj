@@ -3,9 +3,8 @@ jobs:
     # The build job
     build:
         working_directory: ~/project
-
         docker:
-            - image: circleci/node:10-browsers
+            - image: circleci/node:10.1-browsers
         steps:
             # Install Chromedriver latest version
             - run: #STABLE
@@ -54,11 +53,10 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - build
-            deploy:
-             command:
-              name: Deploy Master to Firebase
+            # Deploy project
+            - deploy:
+                name: Deploy Master to Firebase
                 command: |
                   if [ "${CIRCLE_BRANCH}" == "master" ]; then
                     ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
                   fi
-
