@@ -23,6 +23,9 @@ import TextField from '@material-ui/core/TextField';
 import locationsData from '../assets/data/localidadesList.json';
 import wasteTypesData from '../assets/data/wasteTypes.json';
 
+import { withRouter } from 'react-router-dom';
+
+
 import Loader from './Loader';
 
 const styles = (theme) => ({
@@ -90,6 +93,7 @@ class RequestBuy extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.history.push('/requests');
   };
 
   handleSubmit = (event) => {
@@ -274,4 +278,4 @@ RequestBuy.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RequestBuy);
+export default withRouter(withStyles(styles)(RequestBuy));
