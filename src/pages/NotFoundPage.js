@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class componentName extends Component {
+export default class NotFoundPage extends Component {
   render() {
     return <div />;
   }

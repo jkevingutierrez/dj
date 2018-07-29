@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'normalize.css/normalize.css';
 import '../assets/styles/main.scss';
 
 class App extends Component {

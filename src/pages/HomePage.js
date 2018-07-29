@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Welcome from '../containers/forms/login';
 
-export default class componentName extends Component {
+export default class HomePage extends Component {
   render() {
     return <Welcome />;
   }
