@@ -18,6 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
 
 import locationsData from '../assets/data/localidadesList.json';
 import wasteTypesData from '../assets/data/wasteTypes.json';
@@ -38,7 +39,7 @@ const styles = (theme) => ({
   }
 });
 
-class RequestPickupForm extends Component {
+class RequestBuy extends Component {
   state = {
     locations: [],
     wasteTypes: [],
@@ -210,6 +211,28 @@ class RequestPickupForm extends Component {
                 </MuiPickersUtilsProvider>
                 {this.state.error.selectedDate ? <FormHelperText>Obligatorio</FormHelperText> : ''}
               </FormControl>
+              <FormControl
+                error={this.state.error.weight}
+                required
+                className={classes.formControl}
+                fullWidth={true}
+              >
+                <TextField
+                  id="weight"
+                  label="Peso (kg)"
+                  className={classes.textField}
+                  placeholder="0.00"
+                  value={this.state.weight}
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: 'weight',
+                    id: 'weight'
+                  }}
+                  type="weight"
+                  margin="normal"
+                />
+                {this.state.error.weight ? <FormHelperText>Obligatorio</FormHelperText> : ''}
+              </FormControl>
               <FormControl className={classes.formControl} fullWidth={false}>
                 <Button
                   variant="contained"
@@ -247,8 +270,8 @@ class RequestPickupForm extends Component {
   }
 }
 
-RequestPickupForm.propTypes = {
+RequestBuy.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RequestPickupForm);
+export default withStyles(styles)(RequestBuy);
