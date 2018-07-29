@@ -14,17 +14,7 @@ firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged(
 	function(user){
 			if(user){
-				firebase.database().ref('usuarios/' + user.uid).once('value').then(function(snapshot) {
-	            	var usuario = (snapshot.val() && snapshot.val().usuario) || 'No Existe';
-	            	if(usuario=='No Existe'){
-		                firebase.auth().signOut();
-	            		document.getElementById("principal-login").innerHTML += "<br/> <h1>Usted no se encuentra registrado en la plataforma</h1>";
-	            	}else{
-	            	}
-	            }, function(error){
-	            //En caso de error de conexion con Firebase
-	            console.log(error);
-        		});
+				
             }else{
 			}
 	}
@@ -36,6 +26,17 @@ class Login extends Component {
 		provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 		firebase.auth().signInWithPopup(provider)
 		.then(function(datosUsuario){
+			firebase.database().ref('usuarios/' + datosUsuario.user.uid).once('value').then(function(snapshot) {
+	            	var usuario = (snapshot.val() && snapshot.val().usuario) || 'No Existe';
+	            	if(usuario=='No Existe'){
+		                firebase.auth().signOut();
+	            		document.getElementById("principal-login").innerHTML += "<br/> <h1>Usted no se encuentra registrado en la plataforma</h1>";
+	            	}else{
+	            	}
+	            }, function(error){
+	            //En caso de error de conexion con Firebase
+	            console.log(error);
+        		});
 
 		}).catch(function(err){
 		})
