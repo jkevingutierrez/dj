@@ -1,0 +1,5 @@
+AR: Asociaciones de Recicladores
+IE: Instituciones Educativas
+ECAS: Estaciones de Clasificación y Aprovechamiento de Residuos
+IETDH: Instituciones de Educación para el Trabajo y el Desarrollo Humano
+ENT: Entidades Nacionales y Territoriales
