@@ -1,6 +1,7 @@
 [
   {
-    "nombreinstitucion": "INSTITUTO DE EDUCACION INGABO SEDE RESTREPO EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO",
+    "nombreinstitucion":
+      "INSTITUTO DE EDUCACION INGABO SEDE RESTREPO EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO",
     "codigoinstitucion": 398,
     "direccion": "CRA 17 NO 16 - 45 SUR",
     "estacertificada": "S",
@@ -44,7 +45,8 @@
     "totalprogramas": 20
   },
   {
-    "nombreinstitucion": "INSTITUCION DE EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO CENESCALA (CENTRO NACIONAL DE ESTUDIOS Y CAPACITACION LABORAL)",
+    "nombreinstitucion":
+      "INSTITUCION DE EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO CENESCALA (CENTRO NACIONAL DE ESTUDIOS Y CAPACITACION LABORAL)",
     "codigoinstitucion": 4648,
     "direccion": "CARRERA 18 SUR NO. 18-52",
     "estacertificada": "S",
@@ -354,7 +356,8 @@
   {
     "nombreinstitucion": "WALL STREET INSTITUTE COLOMBIA 1",
     "codigoinstitucion": 7402,
-    "direccion": "CARRERA 7ª NO 45-10 SEDE JAVERIANA CARRERA 7ª NO 74-56 SEDE ROSALES Y CARRERA 11 NO 96-31 SEDE CHICÓ",
+    "direccion":
+      "CARRERA 7ª NO 45-10 SEDE JAVERIANA CARRERA 7ª NO 74-56 SEDE ROSALES Y CARRERA 11 NO 96-31 SEDE CHICÓ",
     "estacertificada": "S",
     "fechalicencia": "11/06/1999",
     "nombresecretaria": "SECRETARIA DE EDUCACIÓN DISTRITO  BOGOTA",
@@ -550,7 +553,8 @@
     "totalprogramas": 2
   },
   {
-    "nombreinstitucion": "CENTRO DE FORMACION BANCARIA Y FINANCIERA COLOMBIA  (ANTES CENTRO DE  FORMACION  BANCARIA)",
+    "nombreinstitucion":
+      "CENTRO DE FORMACION BANCARIA Y FINANCIERA COLOMBIA  (ANTES CENTRO DE  FORMACION  BANCARIA)",
     "codigoinstitucion": 896,
     "direccion": "CALLE 44 NO - 8 - 10",
     "estacertificada": "S",
@@ -726,7 +730,8 @@
     "totalprogramas": 5
   },
   {
-    "nombreinstitucion": "REDECOMPUTO SEDE FONTIBON INSTITUCION PARA EL TRABAJO Y DESARROLLO HUMANO",
+    "nombreinstitucion":
+      "REDECOMPUTO SEDE FONTIBON INSTITUCION PARA EL TRABAJO Y DESARROLLO HUMANO",
     "codigoinstitucion": 401,
     "direccion": "CALLE 17  98-90",
     "estacertificada": "S",
@@ -1034,7 +1039,8 @@
     "totalprogramas": 1
   },
   {
-    "nombreinstitucion": "ESCUELA DE CAPACITACION EN OPERACIONES AEREAS Y DE  DE ADMINISTRACION ECOA",
+    "nombreinstitucion":
+      "ESCUELA DE CAPACITACION EN OPERACIONES AEREAS Y DE  DE ADMINISTRACION ECOA",
     "codigoinstitucion": 4067,
     "direccion": "CALLE 19 Nº 4-74 PISO 3 Y 4 Y CALLE 19 Nº 4-80",
     "estacertificada": "S",
@@ -1232,7 +1238,8 @@
     "totalprogramas": 14
   },
   {
-    "nombreinstitucion": "MEDISED   INSTITUCION DE EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO",
+    "nombreinstitucion":
+      "MEDISED   INSTITUCION DE EDUCACION PARA EL TRABAJO Y EL DESARROLLO HUMANO",
     "codigoinstitucion": 4603,
     "direccion": "CALLE 146C BIS 91-59",
     "estacertificada": "S",
@@ -1474,7 +1481,8 @@
     "totalprogramas": 11
   },
   {
-    "nombreinstitucion": "UNIEMPRESARIAL - FUNDACION UNIVERSITARIA EMPRESARIAL DE LA CAMARA DE COMERCIO DE BOGOTA",
+    "nombreinstitucion":
+      "UNIEMPRESARIAL - FUNDACION UNIVERSITARIA EMPRESARIAL DE LA CAMARA DE COMERCIO DE BOGOTA",
     "codigoinstitucion": 6461,
     "direccion": "CARRERA 33 A NO. 30 - 20",
     "estacertificada": "S",
