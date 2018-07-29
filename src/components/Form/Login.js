@@ -37,11 +37,7 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        selectedLocation: this.calculateNearestLocation(position)
-      });
-    });
+   
 
     this.setState({
       error: {}
@@ -91,7 +87,9 @@ class Login extends Component {
       })
       .catch(function(err) {});
   };
-
+  printRel=(rel, tipo)=>{
+      
+  }
   handlerClick = (event) => {
     const auth = firebase.auth();
     var user = this.state.email;
@@ -100,17 +98,35 @@ class Login extends Component {
     auth
       .signInWithEmailAndPassword(user, pass)
       .then((datosUsuario) => {
-        console.log('1212', datosUsuario);
         firebase
           .database()
-          .ref('USERS/' + datosUsuario.user.uid)
+          .ref('USUARIOS/' + datosUsuario.user.uid)
           .once('value')
           .then(function(snap) {
-            snap.forEach(function(val) {
-              console.log(val.val());
-            });
-            console.log(snap);
             console.log(snap.val());
+              const rel = snap.val().REFERENCES;
+              const tipo = snap.val().TYPE;
+
+              switch(tipo){
+                case 'IE':
+                  firebase.database().ref('IES/'+rel).once('value').then(
+                    function(snap){
+                      console.log(snap.val());
+                    });
+                break;
+                case 'AR':
+                  firebase.database().ref('ORS/'+rel).once('value').then(
+                    function(snap){
+                      console.log(snap.val());
+                    });
+                break;
+                case 'ECAS-Ind':
+                  firebase.database().ref('INDUSTRIA/'+rel).once('value').then(
+                    function(snap){
+                      console.log(snap.val());
+                    });
+                break;
+              }
           });
       })
       .catch((err) => {
