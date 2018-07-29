@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(
 	}
 	);
 
-class Login extends Component {
+class Register extends Component {
 	handlerClickRegister(event){
 
 		const auth = firebase.auth();
@@ -33,7 +33,6 @@ class Login extends Component {
 			const pa = document.getElementById('pass').value;
 			const ty = document.getElementById('tipo-cuenta').value;
 			const name = document.getElementById('nombre').value;
-			console.log(us+pa+ty+name);
 			var obj = {
 				'PASS':pa,
 				'TYPE':ty,
@@ -43,7 +42,7 @@ class Login extends Component {
 			ref.child(datosUsuario.user.uid).set(obj);
 
 		}).catch(function(err){
-	        document.getElementById("principal-login").innerHTML += "<br/> <h1>Los datos ingresados son incorrectos</h1>";
+	        alert('los datos ingresados son incorrectos')
 		});
 
 		
@@ -78,4 +77,4 @@ class Login extends Component {
 		);
 	}
 }
-export default Login;
+export default Register;

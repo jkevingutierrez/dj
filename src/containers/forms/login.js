@@ -26,19 +26,19 @@ class Login extends Component {
 		provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 		firebase.auth().signInWithPopup(provider)
 		.then(function(datosUsuario){
-			firebase.database().ref('usuarios/' + datosUsuario.user.uid).once('value').then(function(snapshot) {
+			firebase.database().ref('USUARIOS/' + datosUsuario.user.uid).once('value').then(function(snapshot) {
 	            	var usuario = (snapshot.val() && snapshot.val().usuario) || 'No Existe';
 	            	if(usuario=='No Existe'){
 		                firebase.auth().signOut();
-	            		document.getElementById("principal-login").innerHTML += "<br/> <h1>Usted no se encuentra registrado en la plataforma</h1>";
+	            		alert('el usuario seleccionado no se encuentra registrado');
 	            	}else{
 	            	}
 	            }, function(error){
-	            //En caso de error de conexion con Firebase
-	            console.log(error);
+	            	alert('Ha ocurrido un error');
         		});
 
 		}).catch(function(err){
+			
 		})
 	}
 	handlerClick(event){
@@ -48,8 +48,10 @@ class Login extends Component {
 		auth.signInWithEmailAndPassword(user, pass)
 		.then(function(datosUsuario){
 
+
 		}).catch(function(err){
-	            		document.getElementById("principal-login").innerHTML += "<br/> <h1>Los datos ingresados son incorrectos</h1>";
+	            		
+	            	alert('Los datos ingresados sin incorrectos');
 		});
 	}
 	handlerClickRegister(event){
