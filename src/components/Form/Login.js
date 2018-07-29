@@ -37,8 +37,6 @@ class Login extends Component {
   };
 
   componentDidMount() {
-   
-
     this.setState({
       error: {}
     });
@@ -87,9 +85,7 @@ class Login extends Component {
       })
       .catch(function(err) {});
   };
-  printRel=(rel, tipo)=>{
-      
-  }
+  printRel = (rel, tipo) => {};
   handlerClick = (event) => {
     const auth = firebase.auth();
     var user = this.state.email;
@@ -104,29 +100,40 @@ class Login extends Component {
           .once('value')
           .then(function(snap) {
             console.log(snap.val());
-              const rel = snap.val().REFERENCES;
-              const tipo = snap.val().TYPE;
+            const rel = snap.val().REFERENCES;
+            const tipo = snap.val().TYPE;
 
-              switch(tipo){
-                case 'IE':
-                  firebase.database().ref('IES/'+rel).once('value').then(
-                    function(snap){
-                      console.log(snap.val());
-                    });
+            switch (tipo) {
+              case 'IE':
+                firebase
+                  .database()
+                  .ref('IES/' + rel)
+                  .once('value')
+                  .then(function(snap) {
+                    console.log(snap.val());
+                  });
                 break;
-                case 'AR':
-                  firebase.database().ref('ORS/'+rel).once('value').then(
-                    function(snap){
-                      console.log(snap.val());
-                    });
+              case 'AR':
+                firebase
+                  .database()
+                  .ref('ORS/' + rel)
+                  .once('value')
+                  .then(function(snap) {
+                    console.log(snap.val());
+                  });
                 break;
-                case 'ECAS-Ind':
-                  firebase.database().ref('INDUSTRIA/'+rel).once('value').then(
-                    function(snap){
-                      console.log(snap.val());
-                    });
+              case 'ECAS-Ind':
+                firebase
+                  .database()
+                  .ref('INDUSTRIA/' + rel)
+                  .once('value')
+                  .then(function(snap) {
+                    console.log(snap.val());
+                  });
                 break;
-              }
+              default:
+                break;
+            }
           });
       })
       .catch((err) => {
