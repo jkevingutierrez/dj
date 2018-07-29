@@ -140,13 +140,14 @@ class Login extends Component {
               default:
                 break;
             }
-
-            this.props.history.push('/pickup/register')
           });
       })
       .catch((err) => {
         alert(err);
       });
+
+    this.props.history.push('/pickup/register')
+
   };
 
   handleSubmit = (e) => {
