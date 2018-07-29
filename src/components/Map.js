@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { success as mapSuccess } from '../actions/map';
+import localitiesGeoJSON from '../assets/data/localidades.geojson';
 
 const style = {
   width: '100%',
@@ -41,6 +42,7 @@ export class MapComponent extends Component {
     // const { google } = mapProps;
     // const service = new google.maps.places.PlacesService(map);
     this.props.dispatch(mapSuccess({ mapProps, map }));
+    map.data.loadGeoJson(localitiesGeoJSON);
   };
 
   render() {
