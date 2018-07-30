@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import App from '../containers/App';
-import HomePage from '../pages/HomePage';
 import RequestPickup from '../pages/RequestPickup';
 import RequestBuy from '../components/RequestBuy';
 import MapComponent from '../components/Map';
